@@ -1,0 +1,64 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f4f4;
+    color:#333;
+}
+
+header{
+    background:#1e3a8a;
+    color:white;
+    padding:20px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:20px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+}
+
+#hero{
+    text-align:center;
+    padding:80px 20px;
+}
+
+#hero button{
+    margin-top:15px;
+    padding:10px 20px;
+    border:none;
+    cursor:pointer;
+}
+
+#hero button:hover{
+    background:#1e3a8a;
+    color:white;
+}
+
+.course-card{
+    background:white;
+    margin:20px;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:#1e3a8a;
+    color:white;
+}
