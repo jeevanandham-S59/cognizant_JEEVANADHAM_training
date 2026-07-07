@@ -3,10 +3,13 @@ from sqlalchemy import (
     Column,
     Integer,
     String,
+    Boolean,
+    Time,
     ForeignKey,
 )
 from sqlalchemy.orm import declarative_base, relationship
 
+# PostgreSQL Connection
 DATABASE_URL = "postgresql+psycopg2://postgres:%40jeeva2005?@localhost/college_db_orm"
 
 engine = create_engine(DATABASE_URL, echo=True)
@@ -33,6 +36,9 @@ class Student(Base):
     student_name = Column(String(100), nullable=False)
     email = Column(String(100), unique=True)
     enrollment_year = Column(Integer)
+
+    # New column
+    is_active = Column(Boolean, default=True)
 
     dept_id = Column(Integer, ForeignKey("departments.dept_id"))
 
@@ -61,6 +67,7 @@ class Course(Base):
     credits = Column(Integer)
 
     enrollments = relationship("Enrollment", back_populates="course")
+    schedules = relationship("CourseSchedule", back_populates="course")
 
 
 # ---------------- Enrollment ----------------
@@ -74,6 +81,21 @@ class Enrollment(Base):
 
     student = relationship("Student", back_populates="enrollments")
     course = relationship("Course", back_populates="enrollments")
+
+
+# ---------------- Course Schedule ----------------
+class CourseSchedule(Base):
+    __tablename__ = "course_schedules"
+
+    schedule_id = Column(Integer, primary_key=True)
+
+    course_id = Column(Integer, ForeignKey("courses.course_id"))
+
+    day_of_week = Column(String(20))
+    start_time = Column(Time)
+    end_time = Column(Time)
+
+    course = relationship("Course", back_populates="schedules")
 
 
 # Create Tables
